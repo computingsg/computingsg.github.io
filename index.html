@@ -66,20 +66,49 @@
         .nav-link {
             display: inline-block;
             padding: 15px 30px;
-            background: linear-gradient(135deg, #FF8C00 0%, #FFD700 100%);
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
             font-size: 1.1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(255, 140, 0, 0.3);
+            margin: 10px;
+            width: 150px;
+            text-align: center;
         }
 
         .nav-link:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(255, 140, 0, 0.4);
-            background: linear-gradient(135deg, #FFD700 0%, #FF8C00 100%);
+        }
+
+        .nav-link.curriculum {
+            background: linear-gradient(135deg, #26D0CE 0%, #1A2980 100%);
+            box-shadow: 0 8px 20px rgba(38, 208, 206, 0.3);
+        }
+
+        .nav-link.curriculum:hover {
+            box-shadow: 0 12px 30px rgba(38, 208, 206, 0.4);
+            background: linear-gradient(135deg, #1A2980 0%, #26D0CE 100%);
+        }
+
+        .nav-link.pedagogy {
+            background: linear-gradient(135deg, #8E44AD 0%, #E91E63 100%);
+            box-shadow: 0 8px 20px rgba(142, 68, 173, 0.3);
+        }
+
+        .nav-link.pedagogy:hover {
+            box-shadow: 0 12px 30px rgba(142, 68, 173, 0.4);
+            background: linear-gradient(135deg, #E91E63 0%, #8E44AD 100%);
+        }
+
+        .nav-link.staff {
+            background: linear-gradient(135deg, #4A90E2 0%, #7B68EE 100%);
+            box-shadow: 0 8px 20px rgba(74, 144, 226, 0.3);
+        }
+
+        .nav-link.staff:hover {
+            box-shadow: 0 12px 30px rgba(74, 144, 226, 0.4);
+            background: linear-gradient(135deg, #7B68EE 0%, #4A90E2 100%);
         }
 
         .welcome-text {
@@ -151,7 +180,9 @@
         </div>
         
         <div class="nav-links">
-            <a href="staff.html" class="nav-link">Meet Our Staff</a>
+            <a href="curriculum.html" class="nav-link curriculum">Curriculum</a>
+            <a href="pedagogy.html" class="nav-link pedagogy">Pedagogy</a>
+            <a href="staff.html" class="nav-link staff">Staff</a>
         </div>
     </div>
 </body>
