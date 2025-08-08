@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedagogy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 248, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 60px 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .header h1 {
+            color: #2C3E50;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header p {
+            color: #566573;
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .decorative-line {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .philosophy-card.ai-card {
+            grid-column: 1 / -1;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 1024px) {
+            .philosophy-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .philosophy-card.ai-card {
+                grid-column: 1;
+                margin-top: 0;
+            }
+        }
+
+        .philosophy-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .philosophy-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: #667eea;
+        }
+
+        .philosophy-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            color: #667eea;
+        }
+
+        .philosophy-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2C3E50;
+            margin-bottom: 15px;
+        }
+
+        .philosophy-description {
+            color: #566573;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .methodology-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .methodology-timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            margin: 0 30px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2C3E50;
+            margin-bottom: 10px;
+        }
+
+        .timeline-description {
+            color: #566573;
+            line-height: 1.6;
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .support-card {
+            background: linear-gradient(135deg, #f8f9ff, #e8ecff);
+            border-radius: 15px;
+            padding: 30px 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .support-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .support-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            color: #667eea;
+            transition: color 0.3s ease;
+        }
+
+        .support-card:hover .support-icon {
+            color: white;
+        }
+
+        .support-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .support-card:hover .support-title {
+            color: white;
+        }
+
+        .support-description {
+            color: #566573;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            transition: color 0.3s ease;
+        }
+
+        .support-card:hover .support-description {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .quote-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+        }
+
+        .quote-text {
+            font-size: 1.4rem;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .quote-author {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .philosophy-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+                text-align: center;
+            }
+
+            .timeline-item:nth-child(even) {
+                flex-direction: column !important;
+            }
+
+            .timeline-content {
+                margin: 20px 0;
+            }
+
+            .support-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quote-section {
+                padding: 30px 20px;
+            }
+
+            .quote-text {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Our Pedagogy</h1>
+            <div class="decorative-line"></div>
+            <p>Self-directed learning with human-centric support</p>
+        </div>
+
+        <div class="philosophy-grid">
+            <div class="philosophy-card">
+                <svg class="philosophy-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6L14,8L16,6L18,8L16,10L18,12L16,14L18,16L16,18L14,16L12,18L10,16L8,18L6,16L8,14L6,12L8,10L6,8L8,6L10,8L12,6Z"/>
+                </svg>
+                <div class="philosophy-title">Student Agency</div>
+                <div class="philosophy-description">
+                    Empowering students to take ownership of their learning journey, make choices, and develop self-regulation skills essential for lifelong learning.
+                </div>
+            </div>
+
+            <div class="philosophy-card">
+                <svg class="philosophy-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M16,4C18.11,4 19.8,5.69 19.8,7.8C19.8,8.19 19.73,8.57 19.62,8.94L21.58,10.9C22.34,9.93 22.8,8.67 22.8,7.3C22.8,4.26 20.34,1.8 17.3,1.8C15.93,1.8 14.67,2.26 13.7,3.02L15.66,4.98C16.03,4.87 16.41,4.8 16.8,4.8M7.2,4.8C7.59,4.8 7.97,4.87 8.34,4.98L10.3,3.02C9.33,2.26 8.07,1.8 6.7,1.8C3.66,1.8 1.2,4.26 1.2,7.3C1.2,8.67 1.66,9.93 2.42,10.9L4.38,8.94C4.27,8.57 4.2,8.19 4.2,7.8C4.2,5.69 5.89,4 8,4M12,11L14,13L16,11L18,13L16,15L18,17L16,19L14,17L12,19L10,17L8,19L6,17L8,15L6,13L8,11L10,13L12,11Z"/>
+                </svg>
+                <div class="philosophy-title">Peer Learning</div>
+                <div class="philosophy-description">
+                    Collaborative learning environment where students learn from each other, share knowledge, and develop communication and teamwork skills.
+                </div>
+            </div>
+
+            <div class="philosophy-card">
+                <svg class="philosophy-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10Z"/>
+                </svg>
+                <div class="philosophy-title">Human-Centric Support</div>
+                <div class="philosophy-description">
+                    Dedicated mentors and educators provide guidance, emotional support, and personalized assistance during the formative high school years.
+                </div>
+            </div>
+
+            <div class="philosophy-card ai-card">
+                <svg class="philosophy-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6C14.21,6 16,7.79 16,10C16,10.39 15.93,10.77 15.82,11.14L17.78,13.1C18.54,12.13 19,10.87 19,9.5C19,6.46 16.54,4 13.5,4C12.13,4 10.87,4.46 9.9,5.22L11.86,7.18C12.23,7.07 12.61,7 13,7M7,9.5C7,10.87 7.46,12.13 8.22,13.1L10.18,11.14C10.07,10.77 10,10.39 10,10C10,7.79 11.79,6 14,6C14.39,6 14.77,6.07 15.14,6.18L17.1,4.22C16.13,3.46 14.87,3 13.5,3C10.46,3 8,5.46 8,8.5M12,8A2,2 0 0,0 10,10A2,2 0 0,0 12,12A2,2 0 0,0 14,10A2,2 0 0,0 12,8Z"/>
+                </svg>
+                <div class="philosophy-title">AI by Your Side</div>
+                <div class="philosophy-description">
+                    Intelligent AI companions provide 24/7 learning support, personalized assistance, and adaptive guidance to enhance the educational experience.
+                </div>
+            </div>
+        </div>
+
+        <div class="methodology-section">
+            <h2 class="section-title">Learning Methodology</h2>
+            <div class="methodology-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-number">1</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Project-Based Discovery</div>
+                        <div class="timeline-description">
+                            Students begin with real-world projects that spark curiosity and drive learning. No traditional lectures - knowledge is acquired through necessity and exploration.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">2</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Peer Collaboration</div>
+                        <div class="timeline-description">
+                            Learning happens through peer-to-peer interaction, code reviews, and collaborative problem-solving. Students teach and learn from each other.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">3</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Mentor Guidance</div>
+                        <div class="timeline-description">
+                            Unlike School 42's purely peer-based approach, we provide dedicated mentors who offer guidance, emotional support, and help navigate challenges.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">4</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">AI-Enhanced Learning</div>
+                        <div class="timeline-description">
+                            AI companions provide personalized tutoring, instant feedback, adaptive content delivery, and intelligent progress tracking to optimize each student's learning journey.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">5</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Continuous Assessment</div>
+                        <div class="timeline-description">
+                            Progress is measured through project completion, peer evaluation, and practical application rather than traditional testing methods.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="methodology-section">
+            <h2 class="section-title">Support Systems</h2>
+            <div class="support-grid">
+                <div class="support-card">
+                    <svg class="support-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6L14,8L16,6L18,8L16,10L18,12L16,14L18,16L16,18L14,16L12,18L10,16L8,18L6,16L8,14L6,12L8,10L6,8L8,6L10,8L12,6Z"/>
+                    </svg>
+                    <div class="support-title">Personal Mentors</div>
+                    <div class="support-description">
+                        Dedicated mentors provide one-on-one guidance and emotional support
+                    </div>
+                </div>
+
+                <div class="support-card">
+                    <svg class="support-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M16,4C18.11,4 19.8,5.69 19.8,7.8C19.8,8.19 19.73,8.57 19.62,8.94L21.58,10.9C22.34,9.93 22.8,8.67 22.8,7.3C22.8,4.26 20.34,1.8 17.3,1.8C15.93,1.8 14.67,2.26 13.7,3.02L15.66,4.98C16.03,4.87 16.41,4.8 16.8,4.8M7.2,4.8C7.59,4.8 7.97,4.87 8.34,4.98L10.3,3.02C9.33,2.26 8.07,1.8 6.7,1.8C3.66,1.8 1.2,4.26 1.2,7.3C1.2,8.67 1.66,9.93 2.42,10.9L4.38,8.94C4.27,8.57 4.2,8.19 4.2,7.8C4.2,5.69 5.89,4 8,4M12,11L14,13L16,11L18,13L16,15L18,17L16,19L14,17L12,19L10,17L8,19L6,17L8,15L6,13L8,11L10,13L12,11Z"/>
+                    </svg>
+                    <div class="support-title">Peer Networks</div>
+                    <div class="support-description">
+                        Structured peer support groups and study circles
+                    </div>
+                </div>
+
+                <div class="support-card">
+                    <svg class="support-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10Z"/>
+                    </svg>
+                    <div class="support-title">Wellness Programs</div>
+                    <div class="support-description">
+                        Mental health support and stress management resources
+                    </div>
+                </div>
+
+                <div class="support-card">
+                    <svg class="support-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,2L2,7V10C2,16 6,20.5 12,22C18,20.5 22,16 22,10V7L12,2M12,4.3L19,8.2V10C19,15.1 16.2,18.7 12,19.9C7.8,18.7 5,15.1 5,10V8.2L12,4.3M11,6V8H9V10H11V12H13V10H15V8H13V6H11Z"/>
+                    </svg>
+                    <div class="support-title">Academic Scaffolding</div>
+                    <div class="support-description">
+                        Structured learning paths with progressive difficulty
+                    </div>
+                </div>
+
+                <div class="support-card">
+                    <svg class="support-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6L14,8L16,6L18,8L16,10L18,12L16,14L18,16L16,18L14,16L12,18L10,16L8,18L6,16L8,14L6,12L8,10L6,8L8,6L10,8L12,6Z"/>
+                    </svg>
+                    <div class="support-title">Family Engagement</div>
+                    <div class="support-description">
+                        Regular communication and involvement with families
+                    </div>
+                </div>
+
+                <div class="support-card">
+                    <svg class="support-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10Z"/>
+                    </svg>
+                    <div class="support-title">Career Guidance</div>
+                    <div class="support-description">
+                        Future planning and career pathway exploration
+                    </div>
+                </div>
+
+                <div class="support-card">
+                    <svg class="support-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6C14.21,6 16,7.79 16,10C16,10.39 15.93,10.77 15.82,11.14L17.78,13.1C18.54,12.13 19,10.87 19,9.5C19,6.46 16.54,4 13.5,4C12.13,4 10.87,4.46 9.9,5.22L11.86,7.18C12.23,7.07 12.61,7 13,7M7,9.5C7,10.87 7.46,12.13 8.22,13.1L10.18,11.14C10.07,10.77 10,10.39 10,10C10,7.79 11.79,6 14,6C14.39,6 14.77,6.07 15.14,6.18L17.1,4.22C16.13,3.46 14.87,3 13.5,3C10.46,3 8,5.46 8,8.5M12,8A2,2 0 0,0 10,10A2,2 0 0,0 12,12A2,2 0 0,0 14,10A2,2 0 0,0 12,8Z"/>
+                    </svg>
+                    <div class="support-title">AI Learning Assistant</div>
+                    <div class="support-description">
+                        24/7 AI tutoring, instant feedback, and personalized learning paths
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote-section">
+            <div class="quote-text">
+                "We believe in the power of self-directed learning, but recognize that high school students need guidance, support, and human connection to thrive during their formative years."
+            </div>
+            <div class="quote-author">
+                — Our Educational Philosophy
+            </div>
+        </div>
+    </div>
+</body>
+</html>
