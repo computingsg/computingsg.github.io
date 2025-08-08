@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #26D0CE 0%, #1A2980 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(240, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 60px 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            color: #2C3E50;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header p {
+            color: #566573;
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .decorative-line {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, #26D0CE, #1A2980);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        .accordion {
+            margin-top: 30px;
+        }
+
+        .accordion-item {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s ease;
+            border: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #e9ecef, #dee2e6);
+        }
+
+        .accordion-header.active {
+            background: linear-gradient(135deg, #26D0CE, #1A2980);
+            color: white;
+        }
+
+        .accordion-icon {
+            width: 50px;
+            height: 50px;
+            flex-shrink: 0;
+        }
+
+        .accordion-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2C3E50;
+            flex-grow: 1;
+        }
+
+        .accordion-header.active .accordion-title {
+            color: white;
+        }
+
+        .accordion-toggle {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #666;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-header.active .accordion-toggle {
+            transform: rotate(45deg);
+            color: white;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: white;
+        }
+
+        .accordion-content.active {
+            max-height: 300px;
+        }
+
+        .accordion-body {
+            padding: 30px;
+            color: #566573;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .module-description {
+            margin-bottom: 15px;
+        }
+
+        .module-highlights {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .module-highlights li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .module-highlights li:before {
+            content: "▸";
+            color: #26D0CE;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .accordion-header {
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .accordion-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .accordion-title {
+                font-size: 1.2rem;
+            }
+
+            .accordion-body {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Curriculum</h1>
+            <div class="decorative-line"></div>
+            <p>Comprehensive modules designed for the future</p>
+        </div>
+
+        <div class="accordion">
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <svg class="accordion-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L2 7V10C2 16 6 20.5 12 22C18 20.5 22 16 22 10V7L12 2M12 4.3L19 8.2V10C19 15.1 16.2 18.7 12 19.9C7.8 18.7 5 15.1 5 10V8.2L12 4.3M11 6V8H9V10H11V12H13V10H15V8H13V6H11Z"/>
+                    </svg>
+                    <span class="accordion-title">Informatics</span>
+                    <span class="accordion-toggle">+</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <div class="module-description">
+                            Foundation of computational thinking and problem-solving using technology.
+                        </div>
+                        <ul class="module-highlights">
+                            <li>Programming fundamentals and algorithms</li>
+                            <li>Data structures and software design</li>
+                            <li>System analysis and digital literacy</li>
+                            <li>Computational problem-solving techniques</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <svg class="accordion-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10Z"/>
+                    </svg>
+                    <span class="accordion-title">Artificial Intelligence</span>
+                    <span class="accordion-toggle">+</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <div class="module-description">
+                            Explore machine learning, neural networks, and intelligent systems.
+                        </div>
+                        <ul class="module-highlights">
+                            <li>Machine learning algorithms and models</li>
+                            <li>Neural networks and deep learning</li>
+                            <li>Natural language processing</li>
+                            <li>AI ethics and responsible development</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <svg class="accordion-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C15.4,12.1 16,12.8 16,14V18C16,19.1 15.1,20 14,20H10C8.9,20 8,19.1 8,18V14C8,12.8 8.6,12.1 9.2,11.5V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.5,8.7 10.5,10V11.5H13.5V10C13.5,8.7 12.8,8.2 12,8.2Z"/>
+                    </svg>
+                    <span class="accordion-title">Cybersecurity</span>
+                    <span class="accordion-toggle">+</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <div class="module-description">
+                            Protect digital assets and understand security principles in the digital age.
+                        </div>
+                        <ul class="module-highlights">
+                            <li>Network security and encryption</li>
+                            <li>Ethical hacking and penetration testing</li>
+                            <li>Digital forensics and incident response</li>
+                            <li>Security policies and risk management</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <svg class="accordion-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10Z"/>
+                    </svg>
+                    <span class="accordion-title">Web3</span>
+                    <span class="accordion-toggle">+</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <div class="module-description">
+                            Decentralized technologies, blockchain, and the future of the internet.
+                        </div>
+                        <ul class="module-highlights">
+                            <li>Blockchain technology and cryptocurrencies</li>
+                            <li>Smart contracts and DApps development</li>
+                            <li>Decentralized finance (DeFi) concepts</li>
+                            <li>NFTs and digital asset management</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <svg class="accordion-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6L14,8L16,6L18,8L16,10L18,12L16,14L18,16L16,18L14,16L12,18L10,16L8,18L6,16L8,14L6,12L8,10L6,8L8,6L10,8L12,6Z"/>
+                    </svg>
+                    <span class="accordion-title">Quantum</span>
+                    <span class="accordion-toggle">+</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <div class="module-description">
+                            Quantum computing principles and next-generation computational paradigms.
+                        </div>
+                        <ul class="module-highlights">
+                            <li>Quantum mechanics for computing</li>
+                            <li>Quantum algorithms and programming</li>
+                            <li>Quantum cryptography and security</li>
+                            <li>Future applications and research</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <svg class="accordion-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6C14.21,6 16,7.79 16,10C16,10.39 15.93,10.77 15.82,11.14L17.78,13.1C18.54,12.13 19,10.87 19,9.5C19,6.46 16.54,4 13.5,4C12.13,4 10.87,4.46 9.9,5.22L11.86,7.18C12.23,7.07 12.61,7 13,7M7,9.5C7,10.87 7.46,12.13 8.22,13.1L10.18,11.14C10.07,10.77 10,10.39 10,10C10,7.79 11.79,6 14,6C14.39,6 14.77,6.07 15.14,6.18L17.1,4.22C16.13,3.46 14.87,3 13.5,3C10.46,3 8,5.46 8,8.5M12,8A2,2 0 0,0 10,10A2,2 0 0,0 12,12A2,2 0 0,0 14,10A2,2 0 0,0 12,8Z"/>
+                    </svg>
+                    <span class="accordion-title">Financial Literacy</span>
+                    <span class="accordion-toggle">+</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <div class="module-description">
+                            Essential financial skills for personal and professional success.
+                        </div>
+                        <ul class="module-highlights">
+                            <li>Personal finance and budgeting</li>
+                            <li>Investment strategies and portfolio management</li>
+                            <li>Entrepreneurship and business planning</li>
+                            <li>Economic principles and market analysis</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const toggle = header.querySelector('.accordion-toggle');
+            
+            // Close all other accordions
+            document.querySelectorAll('.accordion-header').forEach(h => {
+                if (h !== header) {
+                    h.classList.remove('active');
+                    h.nextElementSibling.classList.remove('active');
+                    h.querySelector('.accordion-toggle').textContent = '+';
+                }
+            });
+            
+            // Toggle current accordion
+            header.classList.toggle('active');
+            content.classList.toggle('active');
+            toggle.textContent = header.classList.contains('active') ? '×' : '+';
+        }
+    </script>
+</body>
+</html>
