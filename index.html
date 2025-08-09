@@ -111,6 +111,70 @@
             background: linear-gradient(135deg, #7B68EE 0%, #4A90E2 100%);
         }
 
+        .quote-box {
+            background: #DC143C;
+            border: 3px solid #B22222;
+            border-left: 8px solid #B22222;
+            padding: 25px 30px;
+            margin: 50px auto 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(220, 20, 60, 0.4);
+            font-style: italic;
+            font-size: 1.3rem;
+            color: #FFFFFF;
+            max-width: 600px;
+            line-height: 1.5;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quote-box::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            pointer-events: none;
+        }
+        
+        .quote-box::before {
+            content: 'SG60';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #FFFFFF;
+            background: #FF0000;
+            padding: 3px 8px;
+            border-radius: 12px;
+            text-shadow: none;
+            font-style: normal;
+        }
+
+        .join-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #FFD700 0%, #FF8C00 100%);
+            color: #2C3E50;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .join-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4);
+            background: linear-gradient(135deg, #FF8C00 0%, #FFD700 100%);
+        }
+
         .welcome-text {
             font-size: 1.2rem;
             color: #566573;
@@ -184,6 +248,12 @@
             <a href="pedagogy.html" class="nav-link pedagogy">Pedagogy</a>
             <a href="staff.html" class="nav-link staff">Staff</a>
         </div>
+        
+        <div class="quote-box">
+            "10 years from now this will be a metropolis.<br>Never fear."
+        </div>
+        
+        <a href="https://computing.sg/goto/huatbigbig" class="join-button" target="_blank">Join us</a>
     </div>
 </body>
 </html>
