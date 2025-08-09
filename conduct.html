@@ -98,6 +98,24 @@
             box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
         }
 
+        .image-section {
+            text-align: center;
+            margin: 40px 0 30px;
+        }
+
+        .story-image {
+            max-width: 100%;
+            height: auto;
+            max-height: 400px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .story-image:hover {
+            transform: scale(1.02);
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 40px 20px;
@@ -131,6 +149,10 @@
                 <div class="section-title">Story Summary:</div>
                 <p>When Zhou Chu was young, he relied on his martial skills to bully others in the village. People compared him to the two local scourges—a fierce dragon and a ferocious tiger—and called them together the "Three Scourges." Someone suggested to Zhou Chu that if he could eliminate the dragon and tiger, the village would be better off. Zhou Chu took the suggestion seriously, killed both the dragon and tiger, and proudly returned to share the news, only to discover that the villagers were even happier about his absence than the animals' deaths. This realization awakened him to his own faults. Determined to reform himself, Zhou Chu studied diligently, broadened his knowledge, and eventually became a loyal minister—thus completing the tale of "Zhou Chu Eliminates the Three Scourges."</p>
             </div>
+        </div>
+
+        <div class="image-section">
+            <img src="static/zhouchu.png" alt="Zhou Chu - Ancient Chinese Story Illustration" class="story-image" loading="lazy">
         </div>
 
         <a href="index.html" class="back-link">← Back to Home</a>
