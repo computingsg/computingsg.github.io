@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - HUAT BIG BIG</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #FFD700, #FFA500, #FF8C00);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            padding: 40px 30px;
+            text-align: center;
+            color: #333;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+
+        .controls {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            text-align: center;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #333;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .faq-content {
+            padding: 30px;
+        }
+
+        .accordion {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .accordion-item {
+            border: 1px solid #e9ecef;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #333;
+        }
+
+        .accordion-header.active {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #333;
+        }
+
+        .accordion-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            flex: 1;
+        }
+
+        .accordion-icon {
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-icon.active {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: white;
+        }
+
+        .accordion-content.active {
+            max-height: 1000px;
+        }
+
+        .accordion-body {
+            padding: 25px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .accordion-body ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .accordion-body li {
+            margin: 8px 0;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .strikethrough {
+            text-decoration: line-through;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin: 30px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #333;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .faq-content {
+                padding: 20px;
+            }
+
+            .accordion-header {
+                padding: 15px;
+            }
+
+            .accordion-body {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Frequently Asked Questions</h1>
+            <p>Everything you need to know about HUAT BIG BIG</p>
+        </div>
+
+        <div class="controls">
+            <div class="control-buttons">
+                <button class="control-btn" onclick="expandAll()">Expand All</button>
+                <button class="control-btn" onclick="collapseAll()">Collapse All</button>
+            </div>
+        </div>
+
+        <div class="faq-content">
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">Why is your school name HUAT BIG BIG?</div>
+                        <div class="accordion-icon">▼</div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>Because we want to make you HUAT BIG BIG!</strong></p>
+                            <p>Our mission is to make you a billionaire. What is a billionaire? We borrow the definition from Chapter 76 of Mr Jack Sim's book, The Gumption of Mr. Toilet: A billionaire is one who can/will impact the lives of a billion people positively.</p>
+                            <p>For those who prefer a more academically 'correct' answer: HUAT is our competency-based learning framework encompassing the following:</p>
+                            <ul>
+                                <li><span class="highlight">H</span>abitus (In sociology, habitus is the way that people perceive and respond to the social world they inhabit, by way of their personal habits, skills and disposition of character) / attitude / mindset</li>
+                                <li><span class="highlight">U</span>nderstanding / Knowledge / Cognition</li>
+                                <li><span class="highlight">A</span>bility / Skills / Behavior</li>
+                                <li><span class="highlight">T</span>ransformation / Impact / Outcomes / Results</li>
+                            </ul>
+                            <p><strong>So now do you want to HUAT BIG BIG?</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">Do you provide O-level and A-level Computing tuition?</div>
+                        <div class="accordion-icon">▼</div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p>No. Most schools teach students to ace exams. We <span class="strikethrough">teach</span> empower learners to ace life.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">What age groups do you cater to?</div>
+                        <div class="accordion-icon">▼</div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p>Our primary target audience is high school students who want to study Computing but did not have the opportunity to do so (maybe your school does not offer the subject, or you somehow did not meet some qualifying criteria, etc.). We also welcome adults (including seniors) who missed the boat in your formative years.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">Will I learn coding?</div>
+                        <div class="accordion-icon">▼</div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p>Absolutely! This is a Computing school. You will learn both vibe coding and real coding.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">How long are your courses?</div>
+                        <div class="accordion-icon">▼</div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p>The basics of each module can be completed in about 20 hours. How long more you take to show competency in your HUAT projects varies according to each individual learner.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">What are your class sizes?</div>
+                        <div class="accordion-icon">▼</div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p>It depends. From 1 to x, where x is a positive integer > 1, as long as the learning outcomes can be achieved.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">Do you offer online or in-person classes?</div>
+                        <div class="accordion-icon">▼</div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p>Hybrid</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">Are your courses free or fee?</div>
+                        <div class="accordion-icon">▼</div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p>We are tossing a coin (still deciding). People tend to take free stuff for granted. Maybe we will offer a refund for those who persist till the end.</p>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">How do I enroll?</div>
+                        <div class="accordion-icon">▼</div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p>Ready to start your journey with HUAT BIG BIG? <a href="https://computing.sg/goto/huatbigbig" target="_blank" style="color: #FF8C00; font-weight: bold; text-decoration: underline;">Click here to enroll now!</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">Do you provide certificates upon completion?</div>
+                        <div class="accordion-icon">▼</div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p>Better than certificates, your credentials will be blockchain-verifiable.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </div>
+
+    <script>
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.accordion-icon');
+            const isActive = content.classList.contains('active');
+
+            if (isActive) {
+                content.classList.remove('active');
+                header.classList.remove('active');
+                icon.classList.remove('active');
+            } else {
+                content.classList.add('active');
+                header.classList.add('active');
+                icon.classList.add('active');
+            }
+        }
+
+        function expandAll() {
+            const contents = document.querySelectorAll('.accordion-content');
+            const headers = document.querySelectorAll('.accordion-header');
+            const icons = document.querySelectorAll('.accordion-icon');
+
+            contents.forEach(content => content.classList.add('active'));
+            headers.forEach(header => header.classList.add('active'));
+            icons.forEach(icon => icon.classList.add('active'));
+        }
+
+        function collapseAll() {
+            const contents = document.querySelectorAll('.accordion-content');
+            const headers = document.querySelectorAll('.accordion-header');
+            const icons = document.querySelectorAll('.accordion-icon');
+
+            contents.forEach(content => content.classList.remove('active'));
+            headers.forEach(header => header.classList.remove('active'));
+            icons.forEach(icon => icon.classList.remove('active'));
+        }
+    </script>
+</body>
+</html>

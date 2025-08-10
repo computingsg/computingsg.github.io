@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Staff - Our Leadership Team</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 60px 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .staff-grid {
+            display: grid;
+            gap: 40px;
+        }
+
+        .principals-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .attendant-row {
+            display: flex;
+            justify-content: center;
+        }
+
+        .staff-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .staff-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: #3498db;
+        }
+
+        .staff-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            border: 5px solid #ecf0f1;
+            transition: all 0.3s ease;
+            object-fit: cover;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .staff-card:hover .staff-image {
+            border-color: #3498db;
+            transform: scale(1.05);
+        }
+
+        .staff-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .staff-title {
+            font-size: 1.1rem;
+            color: #3498db;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .principal-badge {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .attendant-badge {
+            background: linear-gradient(45deg, #27ae60, #229954);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .principals-row {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .staff-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .staff-name {
+                font-size: 1.3rem;
+            }
+        }
+
+        .decorative-line {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Our Leadership Team</h1>
+            <div class="decorative-line"></div>
+            <p>Meet the dedicated professionals leading our school community</p>
+        </div>
+
+        <div class="staff-grid">
+            <!-- Principals Row -->
+            <div class="principals-row">
+                <div class="staff-card">
+                    <img src="static/principal_lim.png" alt="Lim Boon Tat" class="staff-image">
+                    <div class="staff-name">Lim Boon Tat</div>
+                    <div class="staff-title">Principal</div>
+                    <div class="principal-badge">Leadership</div>
+                </div>
+
+                <div class="staff-card">
+                    <img src="static/principal_teh.png" alt="Teh Kim Wee" class="staff-image">
+                    <div class="staff-name">Teh Kim Wee</div>
+                    <div class="staff-title">Principal</div>
+                    <div class="principal-badge">Leadership</div>
+                </div>
+            </div>
+
+            <!-- Attendant Row -->
+            <div class="attendant-row">
+                <div class="staff-card">
+                    <img src="static/attendant_gi.png" alt="Gi Soong Chee" class="staff-image">
+                    <div class="staff-name">Gi Soong Chee</div>
+                    <div class="staff-title">School Attendant</div>
+                    <div class="attendant-badge">Support Staff</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
