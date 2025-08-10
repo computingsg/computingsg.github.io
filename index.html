@@ -155,7 +155,15 @@
             font-style: normal;
         }
 
-        .join-button {
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
             display: inline-block;
             padding: 18px 40px;
             background: linear-gradient(135deg, #FFD700 0%, #FF8C00 100%);
@@ -165,11 +173,14 @@
             font-weight: 700;
             font-size: 1.2rem;
             transition: all 0.3s ease;
-            margin-top: 20px;
             box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+            width: 140px;
+            text-align: center;
+            box-sizing: border-box;
+            white-space: nowrap;
         }
 
-        .join-button:hover {
+        .action-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4);
             background: linear-gradient(135deg, #FF8C00 0%, #FFD700 100%);
@@ -253,7 +264,10 @@
             "10 years from now this will be a metropolis.<br>Never fear."
         </div>
         
-        <a href="https://computing.sg/goto/huatbigbig" class="join-button" target="_blank">Join us</a>
+        <div class="action-buttons">
+            <a href="faq.html" class="action-button">FAQ</a>
+            <a href="https://computing.sg/goto/huatbigbig" class="action-button" target="_blank">Join us</a>
+        </div>
     </div>
 </body>
 </html>
