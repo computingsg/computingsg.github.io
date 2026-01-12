@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About ComputingSG</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #FFD700 0%, #FF8C00 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 254, 247, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            padding: 60px 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #2C3E50;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            font-family: 'Poppins', 'Montserrat', 'Inter', sans-serif;
+        }
+
+        .uen {
+            font-size: 1.2rem;
+            color: #34495E;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #2C3E50;
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-family: 'Poppins', 'Montserrat', 'Inter', sans-serif;
+        }
+
+        .business-activities {
+            margin-bottom: 40px;
+        }
+
+        .activity-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .activity-item {
+            background: linear-gradient(135deg, #26D0CE 0%, #1A2980 100%);
+            color: white;
+            padding: 20px 25px;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(38, 208, 206, 0.3);
+            font-size: 1.1rem;
+            line-height: 1.5;
+            transition: all 0.3s ease;
+        }
+
+        .activity-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(38, 208, 206, 0.4);
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #FFD700 0%, #FF8C00 100%);
+            color: #2C3E50;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4);
+            background: linear-gradient(135deg, #FF8C00 0%, #FFD700 100%);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 25px;
+            }
+
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .activity-item {
+                font-size: 1rem;
+                padding: 15px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .main-title {
+                font-size: 1.8rem;
+            }
+
+            .uen {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="main-title">About ComputingSG</h1>
+            <p class="uen">UEN: 202543223R</p>
+        </div>
+
+        <div class="business-activities">
+            <h2 class="section-title">What we do:</h2>
+            <ul class="activity-list">
+                <li class="activity-item">Training courses for information and communications, finance and professional services (85405)</li>
+                <li class="activity-item">Information technology consultancy (except cybersecurity) (62021)</li>
+            </ul>
+        </div>
+
+        <div class="back-link">
+            <a href="index.html" class="back-button">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
