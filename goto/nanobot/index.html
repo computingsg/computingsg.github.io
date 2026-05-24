@@ -1,10 +1,706 @@
-<html>    
-  <head>      
-    <title>nanobot</title>    
-  </head>    
-  <body> 
-    <h1>nanobot</h1>
-    <p><a href="https://docs.google.com/presentation/d/1ux1WAZZdxucLXhBRfv2X_s1sod0qtnE5tmk-z4LjpNk/edit?usp=sharing">Slides</a></p>
-    <p><a href="https://github.com/computingsg/computingsg.github.io/blob/main/goto/nanobot/workshop_worksheet.md">Worksheet</a></p>
-  </body>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>nanobot — Build Your Own Second Brain</title>
+  <meta name="description" content="A 90-minute workshop: build a personal AI second brain on hardware you already own. Telegram + nanobot + your machine.">
+
+  <!-- Typography: Fraunces for display (serif, literary character), IBM Plex Sans for body, IBM Plex Mono for code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Palette — derived from the workshop deck */
+      --ink: #0B1426;             /* primary text, dark navy */
+      --ink-muted: #4A5670;       /* secondary text */
+      --ink-faint: #8A93A6;       /* tertiary, labels */
+      --teal: #0F766E;            /* accent — links, dividers */
+      --teal-deep: #115E59;       /* hover */
+      --teal-pale: #CCFBF1;       /* subtle backgrounds */
+      --bg: #FAFAF7;              /* page background, warm off-white */
+      --bg-card: #FFFFFF;         /* link card surface */
+      --border: #E5E2DA;          /* subtle dividers */
+      --border-strong: #0B1426;   /* deliberate, decorative */
+
+      /* Type */
+      --font-serif: 'Fraunces', 'Iowan Old Style', 'Palatino', Georgia, serif;
+      --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Container — generous, single column */
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Top stripe — subtle visual mark, deck-style */
+    .topstripe {
+      height: 6px;
+      background: var(--teal);
+    }
+
+    /* HEADER ============================================ */
+    header {
+      padding: 56px 0 32px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+    }
+    .brand-dot {
+      width: 12px;
+      height: 12px;
+      background: var(--teal);
+      display: inline-block;
+    }
+
+    /* HERO ============================================== */
+    .hero {
+      padding: 8px 0 64px;
+    }
+    .kicker {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      color: var(--teal);
+      text-transform: uppercase;
+      margin: 0 0 16px;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: clamp(40px, 7vw, 64px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin: 0 0 24px;
+      color: var(--ink);
+      /* Slight optical adjustment for Fraunces' generous proportions */
+      font-variation-settings: "opsz" 144;
+    }
+    h1 em {
+      font-style: italic;
+      font-weight: 500;
+      color: var(--teal-deep);
+    }
+    .lede {
+      font-family: var(--font-serif);
+      font-size: clamp(18px, 2.2vw, 21px);
+      line-height: 1.5;
+      color: var(--ink-muted);
+      font-weight: 400;
+      margin: 0 0 36px;
+      max-width: 580px;
+      font-variation-settings: "opsz" 36;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px 36px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+    }
+    .meta div {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .meta-label {
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+    }
+    .meta-value {
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    /* SECTION ============================================ */
+    section {
+      padding: 56px 0;
+      border-top: 1px solid var(--border);
+    }
+    h2 {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: clamp(28px, 4vw, 36px);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin: 0 0 12px;
+      font-variation-settings: "opsz" 72;
+    }
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: var(--teal);
+      text-transform: uppercase;
+      margin: 0 0 12px;
+    }
+    .section-intro {
+      font-size: 17px;
+      color: var(--ink-muted);
+      margin: 0 0 32px;
+      max-width: 600px;
+    }
+
+    /* WHAT YOU'LL BUILD ================================== */
+    .steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      counter-reset: step;
+    }
+    .steps li {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      counter-increment: step;
+    }
+    .steps li:last-child { border-bottom: none; }
+    .steps li::before {
+      content: counter(step, decimal-leading-zero);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--teal);
+      letter-spacing: 0.04em;
+      padding-top: 4px;
+    }
+    .step-title {
+      font-family: var(--font-serif);
+      font-size: 21px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin: 0 0 6px;
+      font-variation-settings: "opsz" 36;
+    }
+    .step-body {
+      color: var(--ink-muted);
+      font-size: 15.5px;
+      margin: 0;
+    }
+    .step-body code {
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+      background: var(--teal-pale);
+      color: var(--teal-deep);
+      padding: 1px 6px;
+      border-radius: 2px;
+    }
+
+    /* PREREQUISITES ====================================== */
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checkbox {
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--ink);
+      flex-shrink: 0;
+      margin-top: 3px;
+      position: relative;
+    }
+    .check-text {
+      font-size: 15.5px;
+      color: var(--ink);
+    }
+    .check-text strong {
+      font-weight: 600;
+    }
+    .check-text .hint {
+      display: block;
+      color: var(--ink-muted);
+      font-size: 14px;
+      margin-top: 3px;
+    }
+    .check-text code {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      background: #F0EFE9;
+      color: var(--ink);
+      padding: 1px 5px;
+      border-radius: 2px;
+    }
+
+    /* RESOURCES ========================================== */
+    .resource-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 600px) {
+      .resource-grid { grid-template-columns: 1fr; }
+    }
+    .resource-card {
+      display: block;
+      padding: 28px;
+      background: var(--bg-card);
+      border: 1.5px solid var(--ink);
+      text-decoration: none;
+      color: var(--ink);
+      transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+      position: relative;
+    }
+    .resource-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 6px 6px 0 var(--teal);
+      background: var(--bg-card);
+    }
+    .resource-card:focus-visible {
+      outline: none;
+      transform: translate(-3px, -3px);
+      box-shadow: 6px 6px 0 var(--teal);
+    }
+    .res-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--teal);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .res-title {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+      font-variation-settings: "opsz" 36;
+    }
+    .res-desc {
+      font-size: 14px;
+      color: var(--ink-muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .res-arrow {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-family: var(--font-mono);
+      color: var(--ink);
+      transition: transform 120ms ease;
+    }
+    .resource-card:hover .res-arrow {
+      transform: translateX(3px);
+    }
+
+    /* Secondary resource links — flat row */
+    .links-flat {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 32px;
+    }
+    .link-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--ink);
+      transition: color 120ms ease;
+    }
+    .link-row:hover { color: var(--teal-deep); }
+    .link-row:hover .link-arrow { transform: translateX(4px); color: var(--teal-deep); }
+    .link-label {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-weight: 500;
+    }
+    .link-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .link-host {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-faint);
+      letter-spacing: 0.02em;
+    }
+    .link-arrow {
+      font-family: var(--font-mono);
+      color: var(--ink-faint);
+      transition: transform 120ms ease, color 120ms ease;
+    }
+
+    /* QUOTE / ACCENT ===================================== */
+    .quote {
+      padding: 48px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin: 56px 0;
+    }
+    blockquote {
+      font-family: var(--font-serif);
+      font-size: clamp(20px, 3vw, 26px);
+      line-height: 1.4;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--ink);
+      margin: 0 0 16px;
+      letter-spacing: -0.01em;
+      font-variation-settings: "opsz" 48;
+    }
+    blockquote::before {
+      content: "“";
+      color: var(--teal);
+      font-family: var(--font-serif);
+      font-size: 1.3em;
+      line-height: 0;
+      vertical-align: -0.15em;
+      margin-right: 0.05em;
+    }
+    .quote-attr {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+    }
+
+    /* FOOTER ============================================= */
+    footer {
+      padding: 48px 0 64px;
+      border-top: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      color: var(--ink-faint);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    footer a {
+      color: var(--ink-muted);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 120ms ease, color 120ms ease;
+    }
+    footer a:hover {
+      color: var(--teal-deep);
+      border-bottom-color: var(--teal-deep);
+    }
+
+    /* Inline links (other text contexts) */
+    p a, .lede a, .section-intro a {
+      color: var(--teal-deep);
+      text-decoration: none;
+      border-bottom: 1px solid var(--teal);
+      transition: background 120ms ease;
+    }
+    p a:hover, .lede a:hover, .section-intro a:hover {
+      background: var(--teal-pale);
+    }
+
+    /* Reduce motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+
+    /* Subtle entry animation for hero only — single high-impact moment */
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero .kicker { animation: rise 500ms ease-out 0ms both; }
+    .hero h1      { animation: rise 600ms ease-out 80ms both; }
+    .hero .lede   { animation: rise 600ms ease-out 160ms both; }
+    .hero .meta   { animation: rise 600ms ease-out 240ms both; }
+  </style>
+</head>
+<body>
+
+  <div class="topstripe" aria-hidden="true"></div>
+
+  <div class="wrap">
+
+    <header>
+      <div class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>computing.sg · workshop</span>
+      </div>
+    </header>
+
+    <section class="hero">
+      <p class="kicker">Build-a-long workshop · ~90 min</p>
+      <h1>Build your own <em>second brain</em> with nanobot &amp; Telegram.</h1>
+      <p class="lede">
+        A 90-minute hands-on workshop. You leave with a working AI agent
+        running on hardware you already own, connected to your Telegram,
+        configured as a personal second brain on a topic you actually
+        care about.
+      </p>
+      <div class="meta">
+        <div>
+          <span class="meta-label">Duration</span>
+          <span class="meta-value">~90 minutes</span>
+        </div>
+        <div>
+          <span class="meta-label">Level</span>
+          <span class="meta-value">Comfortable in a terminal</span>
+        </div>
+        <div>
+          <span class="meta-label">Cost</span>
+          <span class="meta-value">$0 (free tier)</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <p class="section-kicker">01 · The build</p>
+      <h2>What you'll actually build.</h2>
+      <p class="section-intro">
+        Not a slide deck. A working bot. By the end of the workshop you'll
+        be messaging your own AI on Telegram, watching it organize sources
+        into a structured wiki on your own machine.
+      </p>
+
+      <ol class="steps">
+        <li>
+          <div>
+            <h3 class="step-title">Install nanobot &amp; Telegram channel</h3>
+            <p class="step-body">
+              One command via <code>pipx</code>. Onboard a workspace, register a Telegram bot
+              with <code>@BotFather</code>, scope it to your user ID only.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3 class="step-title">Configure the LLM (cloud or local)</h3>
+            <p class="step-body">
+              <strong>Path A:</strong> OpenRouter for fast cloud replies (free tier available).
+              <strong>Path B:</strong> Local Ollama for privacy and offline operation.
+              Both supported as first-class paths.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3 class="step-title">Write the schema that defines the bot's job</h3>
+            <p class="step-body">
+              A tight <code>AGENTS.md</code> turns a generic chatbot into a disciplined
+              wiki maintainer. MANDATORY rules. Verbatim quotes. Scoped refusals.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3 class="step-title">Ingest sources, query the wiki, watch compounding</h3>
+            <p class="step-body">
+              Paste articles or drag-drop PDFs into Telegram. The bot extracts,
+              files, and cites. Every source teaches the brain multiple things.
+            </p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <p class="section-kicker">02 · Prerequisites</p>
+      <h2>Before you show up.</h2>
+      <p class="section-intro">
+        Bring a machine, install nothing (unless you want to save time —
+        the worksheet walks through installs from scratch).
+      </p>
+
+      <ul class="checklist">
+        <li>
+          <span class="checkbox" aria-hidden="true"></span>
+          <span class="check-text">
+            <strong>A machine</strong> — Mac, Linux, Windows (WSL), or a Raspberry Pi 4/5
+            <span class="hint">4 GB RAM minimum, 8+ GB recommended. Workshop has been tested on Pi 5 16 GB.</span>
+          </span>
+        </li>
+        <li>
+          <span class="checkbox" aria-hidden="true"></span>
+          <span class="check-text">
+            <strong>Python ≥ 3.11</strong>
+            <span class="hint">Check with <code>python3 --version</code>. Most modern systems have this.</span>
+          </span>
+        </li>
+        <li>
+          <span class="checkbox" aria-hidden="true"></span>
+          <span class="check-text">
+            <strong>A Telegram account</strong>
+            <span class="hint">On your phone. You'll create a bot with <code>@BotFather</code> during the workshop.</span>
+          </span>
+        </li>
+        <li>
+          <span class="checkbox" aria-hidden="true"></span>
+          <span class="check-text">
+            <strong>An OpenRouter account (optional)</strong>
+            <span class="hint">Free tier covers the workshop. Sign up at <a href="https://openrouter.ai">openrouter.ai</a>. Skip if you're going local-only.</span>
+          </span>
+        </li>
+        <li>
+          <span class="checkbox" aria-hidden="true"></span>
+          <span class="check-text">
+            <strong>A topic in mind</strong>
+            <span class="hint">Something narrow you care about — your craft, a learning goal, your job role. The worksheet's default running example is AI fluency.</span>
+          </span>
+        </li>
+      </ul>
+    </section>
+
+    <div class="quote">
+      <blockquote>
+        The tedious part of maintaining a knowledge base is not the
+        reading or the thinking — it's the bookkeeping. LLMs don't get bored.
+      </blockquote>
+      <p class="quote-attr">— Andrej Karpathy, on the LLM Wiki pattern</p>
+    </div>
+
+    <section>
+      <p class="section-kicker">03 · Materials</p>
+      <h2>Workshop materials.</h2>
+      <p class="section-intro">
+        Both open during the live session. The worksheet has the exact
+        commands; the slides explain the why.
+      </p>
+
+      <div class="resource-grid">
+        <a class="resource-card" href="https://docs.google.com/presentation/d/1ux1WAZZdxucLXhBRfv2X_s1sod0qtnE5tmk-z4LjpNk/edit?usp=sharing" target="_blank" rel="noopener">
+          <div class="res-label">Slides · Google Docs</div>
+          <div class="res-arrow" aria-hidden="true">→</div>
+          <div class="res-title">Slide deck</div>
+          <p class="res-desc">
+            25 slides. Concepts, architecture diagrams, activity dividers,
+            decision points. Open this on the projector during the live session.
+          </p>
+        </a>
+
+        <a class="resource-card" href="https://github.com/computingsg/computingsg.github.io/blob/main/goto/nanobot/workshop_worksheet.md" target="_blank" rel="noopener">
+          <div class="res-label">Worksheet · GitHub</div>
+          <div class="res-arrow" aria-hidden="true">→</div>
+          <div class="res-title">Worksheet</div>
+          <p class="res-desc">
+            Every exact command. Path A &amp; Path B side by side. Troubleshooting
+            tables. Reference cards for upgrade, systemd, laptop shutdown.
+          </p>
+        </a>
+      </div>
+
+      <div class="links-flat">
+        <a class="link-row" href="https://github.com/HKUDS/nanobot" target="_blank" rel="noopener">
+          <span class="link-label">nanobot — the agent framework</span>
+          <span class="link-meta">
+            <span class="link-host">github.com/HKUDS/nanobot</span>
+            <span class="link-arrow" aria-hidden="true">→</span>
+          </span>
+        </a>
+        <a class="link-row" href="https://nanobot.wiki" target="_blank" rel="noopener">
+          <span class="link-label">nanobot docs</span>
+          <span class="link-meta">
+            <span class="link-host">nanobot.wiki</span>
+            <span class="link-arrow" aria-hidden="true">→</span>
+          </span>
+        </a>
+        <a class="link-row" href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f" target="_blank" rel="noopener">
+          <span class="link-label">Karpathy's LLM Wiki gist — the conceptual basis</span>
+          <span class="link-meta">
+            <span class="link-host">gist.github.com</span>
+            <span class="link-arrow" aria-hidden="true">→</span>
+          </span>
+        </a>
+        <a class="link-row" href="https://openrouter.ai" target="_blank" rel="noopener">
+          <span class="link-label">OpenRouter — cloud LLM provider</span>
+          <span class="link-meta">
+            <span class="link-host">openrouter.ai</span>
+            <span class="link-arrow" aria-hidden="true">→</span>
+          </span>
+        </a>
+        <a class="link-row" href="https://ollama.com" target="_blank" rel="noopener">
+          <span class="link-label">Ollama — local LLM runtime</span>
+          <span class="link-meta">
+            <span class="link-host">ollama.com</span>
+            <span class="link-arrow" aria-hidden="true">→</span>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <span>computing.sg · workshop · 2026</span>
+      <span>
+        <a href="https://github.com/computingsg/computingsg.github.io">source</a>
+      </span>
+    </footer>
+
+  </div>
+
+  <script>
+    // Tiny enhancement: copy the worksheet's "honest" tone by occasionally
+    // showing what year the page believes it is — useful for spotting stale info.
+    // Single console line on load, nothing visible to readers.
+    console.log(
+      '%cnanobot workshop · ' + new Date().getFullYear(),
+      'font-family: monospace; color: #0F766E; font-size: 12px;'
+    );
+
+    // Smooth-scroll for any internal anchors added later. No fancy effects.
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+</body>
 </html>
